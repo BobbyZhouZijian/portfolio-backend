@@ -25,7 +25,7 @@ module Api
       end
 
       def find_by_name
-        educations = Education.where('lower(institution_name) LIKE ?', "#{params[:institution_name].downcase}%")
+        educations = Education.where('lower(institution_name) LIKE ?', "%#{params[:institution_name].downcase}%")
         render json: {
           status: 'SUCCESS',
           message: 'Found education',
