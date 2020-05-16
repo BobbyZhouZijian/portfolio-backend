@@ -25,7 +25,7 @@ module Api
       end
 
       def find_by_name
-        educations = Education.where('institution_name LIKE ?', "%#{params[:institution_name]}%")
+        educations = Education.where('lower(institution_name) LIKE ?', "#{params[:institution_name].downcase}%")
         render json: {
           status: 'SUCCESS',
           message: 'Found education',
@@ -86,7 +86,7 @@ module Api
       end
 
       def valid_api_key?
-        request.headers['X-Api-Key'] == Rails.application.credentials.api_key
+        request.headers['x-Api-Key'] == Rails.application.credentials.api_key
       end
 
       def validate_api_key!
