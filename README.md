@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## API endpoint for my personal website
+* currently only developed education experience
+* each education experience has many contents
+* when requesting, add 'X-api-key' with 'abc123' as value in the header
 
-Things you may want to cover:
+* routes:
+    - resource educations
+    - resource education_contents
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Deployment
+* heroku
