@@ -3,7 +3,7 @@ module Api
   module V1
     class EducationContentsController < ApplicationController
       def index
-        contents = EducationContent.all
+        contents = EducationContent.find(params[:education_id])
         render json: {
             status: 'SUCCESS',
             message: 'Loaded education contents',
@@ -12,18 +12,19 @@ module Api
       end
 
       def create
-        content = EducationContent.create(education_contents_params)
-        if content.save
+        education = Education.find(params[:education_id])
+        education.education_contents.create(education_contents_params)
+        if education.save
           render json: {
               status: 'SUCCESS',
               message: 'Loaded education contents',
-              data: content
+              data: education
           }, status: :ok
         else
           render json: {
               status: 'ERROR',
               message: 'Failed to loaded education contents',
-              data: content.errors
+              data: education.errors
           }, status: :unprocessable_entity
         end
       end
@@ -59,7 +60,7 @@ module Api
       private
 
       def education_contents_params
-        params.permit(:content, :education_id)
+        params.permit(:education_content, :content, :education_id)
       end
     end
   end

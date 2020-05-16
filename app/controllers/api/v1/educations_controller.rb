@@ -18,9 +18,18 @@ module Api
         education = Education.find(params[:id])
         render json: {
           status: 'SUCCESS',
-            message: 'Loaded education',
-            contents: EducationContent.where(education_id: education.id).all,
-            data: education
+          message: 'Loaded education',
+          contents: EducationContent.where(education_id: education.id).all,
+          data: education
+        }, status: :ok
+      end
+
+      def find_by_name
+        educations = Education.where('institution_name LIKE ?', "%#{params[:institution_name]}%")
+        render json: {
+          status: 'SUCCESS',
+          message: 'Found education',
+          data: educations
         }, status: :ok
       end
 
@@ -29,15 +38,15 @@ module Api
         if education.save
           render json: {
             status: 'SUCCESS',
-              message: 'Loaded education',
-              contents: EducationContent.where(education_id: education.id).all,
-              data: education
+            message: 'Loaded education',
+            contents: EducationContent.where(education_id: education.id).all,
+            data: education
           }, status: :ok
         else
           render json: {
             status: 'ERROR',
-              message: 'Education not saved',
-              data: education.errors
+            message: 'Education not saved',
+            data: education.errors
           }, status: :unprocessable_entity
         end
       end
@@ -47,15 +56,15 @@ module Api
         if education.update_attributes(education_params)
           render json: {
             status: 'SUCCESS',
-              message: 'Updated education',
-              contents: EducationContent.where(education_id: education.id).all,
-              data: education
+            message: 'Updated education',
+            contents: EducationContent.where(education_id: education.id).all,
+            data: education
           }, status: :ok
         else
           render json: {
             status: 'ERROR',
-              message: 'education not updated',
-              data: education.errors
+            message: 'education not updated',
+            data: education.errors
           }, status: :unprocessable_entity
         end
       end
@@ -65,8 +74,8 @@ module Api
         education.destroy
         render json: {
           status: 'SUCCESS',
-            message: 'Deleted education',
-            data: education
+          message: 'Deleted education',
+          data: education
         }, status: :ok
       end
 

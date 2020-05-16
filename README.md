@@ -6,8 +6,6 @@
 * when requesting, add 'X-api-key' with 'abc123' as value in the header
 
 * routes:
-    - resource educations
-    - resource education_contents
-
+    routes please refer to `$bundle exec rails routes`
 ## Deployment
 * heroku

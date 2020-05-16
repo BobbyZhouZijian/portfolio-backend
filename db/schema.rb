@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_084233) do
+ActiveRecord::Schema.define(version: 2020_05_16_141712) do
 
   create_table "education_contents", force: :cascade do |t|
     t.text "content"
