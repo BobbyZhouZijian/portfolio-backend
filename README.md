@@ -9,3 +9,6 @@
     routes please refer to `$bundle exec rails routes`
 ## Deployment
 * heroku
+
+## API URL
+https://zijianzhou-backend.herokuapp.com/
