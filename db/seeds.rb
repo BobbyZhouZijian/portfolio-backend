@@ -8,9 +8,25 @@
 
 5.times do
   ed = Education.create({
-                           institution_name: Faker::University.name,
-                           link: Faker::Internet.domain_name,
-                           degree: Faker::Educator.degree
-                         })
+                          institution_name: Faker::University.name,
+                          link: Faker::Internet.domain_name,
+                          degree: Faker::Educator.degree
+                        })
   ed.education_contents.create({ content: Faker::Lorem.sentence })
 end
+
+
+10.times do
+  Project.create({
+                   project_name: Faker::FunnyName.three_word_name,
+                   repo_link: Faker::Internet.domain_name,
+                   open_repo: true,
+                   content: Faker::Lorem.sentence
+                 })
+end
+
+About.create({
+               header: Faker::Lorem.sentence,
+               life: Faker::Lorem.paragraph,
+               misc: Faker::Lorem.paragraph
+             })

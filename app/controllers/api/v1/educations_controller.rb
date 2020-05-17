@@ -1,10 +1,7 @@
 module Api
-  #noinspection RubyClassModuleNamingConvention
+  # noinspection RubyClassModuleNamingConvention
   module V1
     class EducationsController < ApplicationController
-
-      before_action :validate_api_key!
-
       def index
         educations = Education.order('institution_name')
         render json: {
@@ -83,19 +80,6 @@ module Api
 
       def education_params
         params.require(:education).permit(:institution_name, :link, :degree)
-      end
-
-      def valid_api_key?
-        request.headers['x-Api-Key'] == Rails.application.credentials.api_key
-      end
-
-      def validate_api_key!
-        return if valid_api_key?
-
-        render json: {
-          status: 'ERROR',
-          message: 'incorrect api key'
-        }, status: :forbidden
       end
     end
   end

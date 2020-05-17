@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_16_141712) do
+ActiveRecord::Schema.define(version: 2020_05_17_024519) do
+
+  create_table "abouts", force: :cascade do |t|
+    t.string "header"
+    t.text "life"
+    t.text "misc"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "education_contents", force: :cascade do |t|
     t.text "content"
@@ -24,6 +32,15 @@ ActiveRecord::Schema.define(version: 2020_05_16_141712) do
     t.string "institution_name"
     t.string "link"
     t.string "degree"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "project_name"
+    t.string "repo_link"
+    t.boolean "open_repo"
+    t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

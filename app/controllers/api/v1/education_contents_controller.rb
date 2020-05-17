@@ -1,5 +1,5 @@
 module Api
-  #noinspection RubyClassModuleNamingConvention
+  # noinspection RubyClassModuleNamingConvention
   module V1
     class EducationContentsController < ApplicationController
       def index
