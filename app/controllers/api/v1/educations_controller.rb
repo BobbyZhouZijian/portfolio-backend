@@ -22,7 +22,10 @@ module Api
       end
 
       def find_by_name
-        educations = Education.where('lower(institution_name) LIKE ?', "%#{params[:institution_name].downcase}%")
+        educations = Education
+                     .name_is(name_params)
+                     .order(:institution_name)
+                     .limit(10)
         render json: {
           status: 'SUCCESS',
           message: 'Found education',
@@ -80,6 +83,10 @@ module Api
 
       def education_params
         params.require(:education).permit(:institution_name, :link, :degree)
+      end
+
+      def name_params
+        params.permit(:institution_name)
       end
     end
   end

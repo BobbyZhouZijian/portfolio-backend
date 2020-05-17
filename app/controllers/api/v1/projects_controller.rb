@@ -38,7 +38,10 @@ module Api
       end
 
       def find_by_name
-        projects = Project.where('lower(project_name) LIKE ?', "%#{params[:project_name].downcase}%")
+        projects = Project
+                   .name_is(name_params)
+                   .order(:project_name)
+                   .limit(10)
         render json: {
           status: 'SUCCESS',
           message: 'Found education',
@@ -77,6 +80,10 @@ module Api
 
       def project_params
         params.permit(:project_name, :repo_link, :open_repo, :content)
+      end
+
+      def name_params
+        params.permit(:project_name)
       end
     end
   end
